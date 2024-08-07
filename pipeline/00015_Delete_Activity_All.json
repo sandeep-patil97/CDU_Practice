@@ -1,0 +1,46 @@
+{
+	"name": "00015_Delete_Activity_All",
+	"properties": {
+		"activities": [
+			{
+				"name": "Delete all files in particular folder",
+				"type": "Delete",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_Delete_Activity_All",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "linked_service_adls",
+							"type": "LinkedServiceReference"
+						},
+						"path": "mycontainer/Logs"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"wildcardFileName": "*.*",
+						"enablePartitionDiscovery": false
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-23T14:40:11Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

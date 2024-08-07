@@ -1,0 +1,60 @@
+{
+	"name": "012_ForEach_Activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach activity in  array",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.Countries",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Set var country names",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "CountryName",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"Countries": {
+				"type": "array",
+				"defaultValue": [
+					"India",
+					"USA",
+					"UK"
+				]
+			}
+		},
+		"variables": {
+			"CountryName": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-18T08:14:53Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

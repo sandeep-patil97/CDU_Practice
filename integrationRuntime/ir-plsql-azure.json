@@ -1,0 +1,6 @@
+{
+	"name": "ir-plsql-azure",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

@@ -1,0 +1,89 @@
+{
+	"name": "0019_Lookup_Stored_Procedure_Parameterised",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup stored procedure parameterised",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[file1_SP_Prameter]",
+						"storedProcedureParameters": {
+							"manager_id": {
+								"type": "String",
+								"value": "124"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_stored_proc",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup stored procedure parameterised",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup stored procedure parameterised').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Set variable",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "x",
+								"value": {
+									"value": "@item().employee_id",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"x": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-28T08:41:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

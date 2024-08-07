@@ -1,0 +1,49 @@
+{
+	"name": "010_Set_Variable_Activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable string",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "x",
+					"value": "hello"
+				}
+			},
+			{
+				"name": "Set variable number",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "y",
+					"value": 1000
+				}
+			}
+		],
+		"variables": {
+			"x": {
+				"type": "String"
+			},
+			"y": {
+				"type": "Integer"
+			}
+		},
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-17T12:02:10Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

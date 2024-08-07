@@ -1,0 +1,50 @@
+{
+	"name": "ds_copy_json_sql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EMPLOYEE_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FIRST_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "LAST_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "JOB_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "SALARY",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MANAGER_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DEPARTMENT_ID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "jsonfile5"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

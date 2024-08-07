@@ -1,0 +1,64 @@
+{
+	"name": "dataflow3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_dataFlow_src_csv",
+						"type": "DatasetReference"
+					},
+					"name": "ReadCsvFileData"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsSelectSqlSink",
+						"type": "DatasetReference"
+					},
+					"name": "sinkSql"
+				}
+			],
+			"transformations": [
+				{
+					"name": "selectParticilarColumn"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          EMPLOYEE_ID as string,",
+				"          FIRST_NAME as string,",
+				"          LAST_NAME as string,",
+				"          JOB_ID as string,",
+				"          SALARY as string,",
+				"          MANAGER_ID as string,",
+				"          DEPARTMENT_ID as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ReadCsvFileData",
+				"ReadCsvFileData select(mapColumn(",
+				"          EMPLOYEE_ID,",
+				"          FIRST_NAME,",
+				"          LAST_NAME,",
+				"          JOB_ID,",
+				"          MANAGER_ID",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectParticilarColumn",
+				"selectParticilarColumn sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkSql"
+			]
+		}
+	}
+}

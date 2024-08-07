@@ -1,0 +1,32 @@
+{
+	"name": "0027_Execute_Parameterized_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute parametered Pipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "024_if_activity",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"a": 100
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-08-03T12:50:52Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

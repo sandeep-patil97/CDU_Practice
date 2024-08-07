@@ -1,0 +1,214 @@
+{
+	"name": "026_Switch_Activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Metadata",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_switch_Copy_EightFiles",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "ForEach",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata').output.childItems",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Set full filename",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileName",
+								"value": {
+									"value": "@item().name",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set prefix filename",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set full filename",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "prefixFileName",
+								"value": {
+									"value": "@split(variables('FileName'),'_')[0]",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Switch",
+							"type": "Switch",
+							"dependsOn": [
+								{
+									"activity": "Set prefix filename",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@variables('prefixFileName')",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "Orders",
+										"activities": [
+											{
+												"name": "Set for orders",
+												"type": "SetVariable",
+												"dependsOn": [],
+												"policy": {
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "result",
+													"value": "Orders file"
+												}
+											}
+										]
+									},
+									{
+										"value": "purchase",
+										"activities": [
+											{
+												"name": "Set for purchase",
+												"type": "SetVariable",
+												"dependsOn": [],
+												"policy": {
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "result",
+													"value": "Purchase file"
+												}
+											}
+										]
+									},
+									{
+										"value": "Returns",
+										"activities": [
+											{
+												"name": "Set for returns",
+												"type": "SetVariable",
+												"dependsOn": [],
+												"policy": {
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "result",
+													"value": "Returns file"
+												}
+											}
+										]
+									},
+									{
+										"value": "sales",
+										"activities": [
+											{
+												"name": "Set for sales",
+												"type": "SetVariable",
+												"dependsOn": [],
+												"policy": {
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "result",
+													"value": "Sales file"
+												}
+											}
+										]
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"FileName": {
+				"type": "String"
+			},
+			"prefixFileName": {
+				"type": "String"
+			},
+			"result": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-08-03T07:11:41Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

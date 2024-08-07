@@ -1,0 +1,36 @@
+{
+	"name": "ds_dfSource_adls",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linked_service_adls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "PRODUCTS",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "044 - Data.xlsx",
+				"folderPath": "Data_flow",
+				"fileSystem": "mycontainer"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "PRODUCTKEY",
+				"type": "String"
+			},
+			{
+				"name": "PRODUCTNAME",
+				"type": "String"
+			},
+			{
+				"name": "PRICE",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

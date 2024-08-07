@@ -1,0 +1,37 @@
+{
+	"name": "0055_DataFlow_Sort_AscDesc",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow Sort AscDesc",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Sort Data AscDesc",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "Data_flows_CDU"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-08-06T12:18:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

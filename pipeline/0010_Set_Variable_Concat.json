@@ -1,0 +1,82 @@
+{
+	"name": "0010_Set_Variable_Concat",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable str",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "str",
+					"value": "Hello"
+				}
+			},
+			{
+				"name": "Set variable int",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "num",
+					"value": "1000"
+				}
+			},
+			{
+				"name": "Set variable result",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable str",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set variable int",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "result",
+					"value": {
+						"value": "@concat(variables('str'),' ',variables('num'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"str": {
+				"type": "String"
+			},
+			"num": {
+				"type": "String"
+			},
+			"result": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-17T12:15:13Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,55 @@
+{
+	"name": "00010_Set_Variable_current_date_SubDate",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable current date",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CurrentDate",
+					"value": {
+						"value": "@utcnow()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable Subtract from time",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "SubDate",
+					"value": {
+						"value": "@subtractFromTime(utcnow(),10,'Month')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"CurrentDate": {
+				"type": "String"
+			},
+			"SubDate": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-17T12:35:27Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

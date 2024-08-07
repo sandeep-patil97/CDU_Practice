@@ -1,0 +1,125 @@
+{
+	"name": "0031_copy_nested_json_to_sql",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['EMPLOYEE_ID']"
+								},
+								"sink": {
+									"name": "EMPLOYEE_ID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FIRST_NAME']"
+								},
+								"sink": {
+									"name": "FIRST_NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['LAST_NAME']"
+								},
+								"sink": {
+									"name": "LAST_NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Company']['JOB_ID']"
+								},
+								"sink": {
+									"name": "JOB_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Company']['SALARY']"
+								},
+								"sink": {
+									"name": "SALARY",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Company']['MANAGER_ID']"
+								},
+								"sink": {
+									"name": "MANAGER_ID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Company']['DEPARTMENT_ID']"
+								},
+								"sink": {
+									"name": "DEPARTMENT_ID",
+									"type": "Int32"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_copy_Nestedjson_to_sql",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_copy_NestedJson_sql",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-08-05T11:46:33Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

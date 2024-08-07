@@ -1,0 +1,37 @@
+{
+	"name": "ds_switch_sql_copy3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ReturnDate",
+				"type": "varchar"
+			},
+			{
+				"name": "CustId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Qty",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Returns"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,68 @@
+{
+	"name": "024_if_activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "If Condition",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(pipeline().parameters.a,10)",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Set variable for false",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "x",
+								"value": "No it's not 10"
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Set variable for true",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "x",
+								"value": "Yes it's 10"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"a": {
+				"type": "int",
+				"defaultValue": 10
+			}
+		},
+		"variables": {
+			"x": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-31T18:52:28Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

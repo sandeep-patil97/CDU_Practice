@@ -1,0 +1,19 @@
+{
+	"name": "ds_Delete_Activity_Generic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linked_service_adls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Data",
+				"fileSystem": "mycontainer"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

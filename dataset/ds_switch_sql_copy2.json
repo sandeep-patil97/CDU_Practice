@@ -1,0 +1,37 @@
+{
+	"name": "ds_switch_sql_copy2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PurchaseDate",
+				"type": "varchar"
+			},
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Rate",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Qty",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "purchase"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

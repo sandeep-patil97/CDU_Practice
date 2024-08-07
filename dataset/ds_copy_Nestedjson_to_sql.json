@@ -1,0 +1,51 @@
+{
+	"name": "ds_copy_Nestedjson_to_sql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linked_service_adls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "NestedFile5.json",
+				"folderPath": "jsonFiles",
+				"fileSystem": "mycontainer"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"EMPLOYEE_ID": {
+					"type": "string"
+				},
+				"FIRST_NAME": {
+					"type": "string"
+				},
+				"LAST_NAME": {
+					"type": "string"
+				},
+				"Company": {
+					"type": "object",
+					"properties": {
+						"JOB_ID": {
+							"type": "string"
+						},
+						"SALARY": {
+							"type": "string"
+						},
+						"MANAGER_ID": {
+							"type": "string"
+						},
+						"DEPARTMENT_ID": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

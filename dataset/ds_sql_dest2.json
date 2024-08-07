@@ -1,0 +1,17 @@
+{
+	"name": "ds_sql_dest2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "empData"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

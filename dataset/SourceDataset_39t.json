@@ -1,0 +1,54 @@
+{
+	"name": "SourceDataset_39t",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Conn_for_copyDataTool",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Emp_Records.csv",
+				"folderPath": "Input",
+				"fileSystem": "mycontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "Firstname",
+				"type": "String"
+			},
+			{
+				"name": "Lastname",
+				"type": "String"
+			},
+			{
+				"name": "Dept_id",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "State",
+				"type": "String"
+			},
+			{
+				"name": "Salary",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

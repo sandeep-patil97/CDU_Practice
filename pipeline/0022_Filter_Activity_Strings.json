@@ -1,0 +1,40 @@
+{
+	"name": "0022_Filter_Activity_Strings",
+	"properties": {
+		"activities": [
+			{
+				"name": "Filter strings",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.str",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@startswith(item(),'U')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"str": {
+				"type": "array",
+				"defaultValue": [
+					"india",
+					"USA",
+					"UK",
+					"Germany"
+				]
+			}
+		},
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-31T13:51:07Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

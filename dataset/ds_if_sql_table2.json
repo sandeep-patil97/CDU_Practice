@@ -1,0 +1,43 @@
+{
+	"name": "ds_if_sql_table2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SalesDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ProductId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Rate",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Qty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Sales",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "sales"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

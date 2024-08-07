@@ -1,0 +1,78 @@
+{
+	"name": "Sort Data AscDesc",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_DfSort_AscDesc",
+						"type": "DatasetReference"
+					},
+					"name": "ReadCsvFile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_DfSort_sql2",
+						"type": "DatasetReference"
+					},
+					"name": "sinkSqlData"
+				}
+			],
+			"transformations": [
+				{
+					"name": "selectColumns"
+				},
+				{
+					"name": "sortDataAscDesc"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ProductKey as integer,",
+				"          OrderDateKey as string,",
+				"          CustomerKey as integer,",
+				"          SalesOrderNumber as string,",
+				"          OrderQuantity as string,",
+				"          UnitPrice as double,",
+				"          ProductStandardCost as string,",
+				"          TotalProductCost as string,",
+				"          SalesAmount as double,",
+				"          TaxAmt as double,",
+				"          Freight as string,",
+				"          CarrierTrackingNumber as string,",
+				"          CustomerPONumber as string,",
+				"          OrderDate as string,",
+				"          DueDate as string,",
+				"          ShipDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ReadCsvFile",
+				"ReadCsvFile select(mapColumn(",
+				"          ProductKey,",
+				"          CustomerKey,",
+				"          UnitPrice,",
+				"          SalesAmount,",
+				"          TaxAmt",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectColumns",
+				"selectColumns sort(asc(ProductKey, true),",
+				"     desc(CustomerKey, true)) ~> sortDataAscDesc",
+				"sortDataAscDesc sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkSqlData"
+			]
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "ds_sql_timespecific_generic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "fileAll"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,46 @@
+{
+	"name": "ds_sql_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fname",
+				"type": "nvarchar"
+			},
+			{
+				"name": "lname",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dept_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "city",
+				"type": "nvarchar"
+			},
+			{
+				"name": "state",
+				"type": "nvarchar"
+			},
+			{
+				"name": "salary",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "empData"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,23 @@
+{
+	"name": "ds_dfcopy_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linked_service_adls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "PRODUCTS",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "044 - Data.xlsx",
+				"folderPath": "Data_flow",
+				"fileSystem": "mycontainer"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

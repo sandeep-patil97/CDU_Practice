@@ -1,0 +1,83 @@
+{
+	"name": "013_Append_Variable",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach Append",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.Countries",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Append variable",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "CountriesAppend",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Set variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ForEach Append",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "CountriesOutput",
+					"value": {
+						"value": "@variables('CountriesAppend')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"Countries": {
+				"type": "array",
+				"defaultValue": [
+					"India",
+					"USA",
+					"UK"
+				]
+			}
+		},
+		"variables": {
+			"CountriesOutput": {
+				"type": "Array"
+			},
+			"CountriesAppend": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-18T09:21:58Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

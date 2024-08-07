@@ -1,0 +1,39 @@
+{
+	"name": "0021_Stored_Procedure_Parameters",
+	"properties": {
+		"activities": [
+			{
+				"name": "Stored procedure with parameters",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_file4]",
+					"storedProcedureParameters": {
+						"empid": {
+							"value": "200",
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_sql_db",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "CDU_Practice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-31T11:19:53Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
