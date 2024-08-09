@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "datafactory-practice-1"
+		},
+		"Conn_for_copyDataTool_accountKey": {
+			"value": ""
+		},
+		"Oracle1_connectionString": {
+			"value": ""
+		},
+		"linked_service_adls_accountKey": {
+			"value": ""
+		},
+		"ls_sql_db_password": {
+			"value": ""
+		},
+		"Conn_for_copyDataTool_properties_typeProperties_url": {
+			"value": "https://storageaccountpractice1.dfs.core.windows.net/"
+		},
+		"linked_service_adls_properties_typeProperties_url": {
+			"value": "https://storageaccountpractice1.dfs.core.windows.net/"
+		},
+		"ls_sql_db_properties_typeProperties_server": {
+			"value": "mypracticeserver1.database.windows.net"
+		},
+		"ls_sql_db_properties_typeProperties_database": {
+			"value": "sqldbpractice1"
+		},
+		"ls_sql_db_properties_typeProperties_userName": {
+			"value": "sqlpractice"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
